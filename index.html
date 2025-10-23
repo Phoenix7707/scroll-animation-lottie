@@ -7,105 +7,15 @@
   <title>Junaid Masood</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
+  <!-- Link your CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <!-- Lottie -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #000;
-      color: #fff;
-      height: 3500vh;
-      overflow-x: hidden;
-    }
-
-    /* Loader */
-    .screen-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: #000;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    .loader-circle {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
-      position: relative;
-    }
-
-    .loader-text {
-      position: absolute;
-      color: #000;
-      font-size: 22px;
-      opacity: 0;
-    }
-
-    .loader-percentage {
-      color: #fff;
-      font-size: 24px;
-    }
-
-    /* Lottie Containers */
-    .lottie-wrapper {
-      width: 100%;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 1;
-      background: #000;
-    }
-
-    #lottie-container-1,
-    #lottie-container-2,
-    #lottie-container-3 {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    #lottie-container-1 canvas,
-    #lottie-container-2 canvas,
-    #lottie-container-3 canvas {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover;
-      image-rendering: crisp-edges;
-    }
-
-    .hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -128,133 +38,9 @@
     <div id="lottie-container-3" class="hidden"></div>
   </div>
 
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
+  <!-- Link your JS (always at the end of body) -->
+  <script src="js/main.js"></script>
 
-    // ✅ ADD YOUR THREE LOTTIE FILES HERE
-    const lottieFiles = [
-      "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/Jungle-Scene.json",
-      "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/Jungle-Scene.json",  // Replace with your second file
-      "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/Jungle-Scene.json"    // Replace with your third file
-    ];
-
-    const loaderTexts = document.querySelectorAll('.loader-text');
-    const loaderPercentage = document.querySelector('.loader-percentage');
-    const screenLoader = document.querySelector('.screen-loader');
-
-    document.body.style.overflow = "hidden";
-    window.scrollTo(0, 0);
-
-    let animations = [];
-    let totalFrames = [];
-    let loadedCount = 0;
-    let currentAnimIndex = 0;
-
-    // Load all animations dynamically
-    lottieFiles.forEach((file, index) => {
-      const container = document.getElementById(`lottie-container-${index + 1}`);
-      
-      animations[index] = lottie.loadAnimation({
-        container: container,
-        renderer: "canvas",
-        loop: false,
-        autoplay: false,
-        rendererSettings: {
-          preserveAspectRatio: "xMidYMid slice"
-        },
-        path: file
-      });
-
-      animations[index].addEventListener("DOMLoaded", () => {
-        totalFrames[index] = animations[index].totalFrames;
-        loadedCount++;
-        if (loadedCount === lottieFiles.length) {
-          hideLoader();
-        }
-      });
-    });
-
-    // Loader Animation
-    let index = 0;
-    function loopLoaderText() {
-      const text = loaderTexts[index];
-      gsap.fromTo(text, { opacity: 0 }, {
-        opacity: 1,
-        duration: .4,
-        onComplete: () => {
-          gsap.to(text, {
-            opacity: 0,
-            duration: .4,
-            delay: .6,
-            onComplete: () => {
-              index++;
-              if (index < loaderTexts.length) loopLoaderText();
-            }
-          });
-        }
-      });
-    }
-
-    function hideLoader() {
-      gsap.to(screenLoader, {
-        opacity: 0,
-        duration: 1,
-        onComplete: () => {
-          screenLoader.style.display = "none";
-          document.body.style.overflow = "auto";
-          scrollAnimation();
-        }
-      });
-    }
-
-    function switchToAnimation(index) {
-      if (currentAnimIndex === index) return;
-      currentAnimIndex = index;
-      
-      // Hide all containers except the active one
-      for (let i = 0; i < lottieFiles.length; i++) {
-        const container = document.getElementById(`lottie-container-${i + 1}`);
-        if (i === index) {
-          container.classList.remove('hidden');
-        } else {
-          container.classList.add('hidden');
-        }
-      }
-    }
-
-    function scrollAnimation() {
-      const combinedFrames = totalFrames.reduce((sum, frames) => sum + frames, 0);
-      let obj = { frame: 0 };
-
-      gsap.to(obj, {
-        frame: combinedFrames - 1,
-        snap: "frame",
-        ease: "none",
-        scrollTrigger: {
-          trigger: document.body,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1
-        },
-        onUpdate: () => {
-          const currentFrame = Math.floor(obj.frame);
-          let frameCount = 0;
-          
-          // Find which animation should be playing
-          for (let i = 0; i < animations.length; i++) {
-            if (currentFrame < frameCount + totalFrames[i]) {
-              switchToAnimation(i);
-              animations[i].goToAndStop(currentFrame - frameCount, true);
-              break;
-            }
-            frameCount += totalFrames[i];
-          }
-        }
-      });
-    }
-
-    loopLoaderText();
-  </script>
 </body>
 
 </html>
