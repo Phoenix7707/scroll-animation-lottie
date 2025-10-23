@@ -1,0 +1,92 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+    height: 3500vh;
+    overflow-x: hidden;
+  }
+
+  /* Loader */
+  .screen-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .loader-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+
+  .loader-text {
+    position: absolute;
+    color: #000;
+    font-size: 22px;
+    opacity: 0;
+  }
+
+  .loader-percentage {
+    color: #fff;
+    font-size: 24px;
+  }
+
+  /* Lottie Containers */
+  .lottie-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+    background: #000;
+  }
+
+  #lottie-container-1,
+  #lottie-container-2,
+  #lottie-container-3 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #lottie-container-1 canvas,
+  #lottie-container-2 canvas,
+  #lottie-container-3 canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    image-rendering: crisp-edges;
+  }
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
