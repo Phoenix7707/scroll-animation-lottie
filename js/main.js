@@ -3,9 +3,9 @@
 
   // ✅ ADD YOUR THREE LOTTIE FILES HERE
   const lottieFiles = [
-    "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/Jungle-Scene.json",
-    "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/Falling-Scene.json",
-    "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/Space-Scene.json"
+    "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/assets/Jungle-Scene.json",
+    "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/assets/Falling-Scene.json",
+    "https://raw.githubusercontent.com/Phoenix7707/scroll-animation-lottie/refs/heads/main/assets/Space-Scene.json"
   ];
 
   const loaderTexts = document.querySelectorAll('.loader-text');
@@ -133,4 +133,5 @@
   }
 
   loopLoaderText();
+
 </script>
