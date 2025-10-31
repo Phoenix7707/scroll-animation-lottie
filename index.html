@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Junaid Masood</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
-  <!-- Link your CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- GSAP -->
+  <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <!-- Lottie -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  
 </head>
 
 <body>
@@ -23,24 +23,94 @@
   <!-- Loader -->
   <div class="screen-loader">
     <div class="loader-circle">
-      <span class="loader-text">EAT ();</span>
-      <span class="loader-text">SLEEP ();</span>
-      <span class="loader-text">CODE ();</span>
-      <span class="loader-text">REPEAT ();</span>
+      <svg viewBox="0 0 100 100">
+        <polygon class="triangle-path" points="50,20 85,80 15,80" />
+      </svg>
     </div>
-    <div class="loader-percentage">0%</div>
+    <div class="loader-percentage">0</div>
   </div>
+
+  <!-- Black Overlay -->
+  <div class="overlay"></div>
+
+  <div class="scrollbar-track">
+    <div class="scrollbar-thumb"></div>
+  </div>
+
+  <!-- Scroll Hint -->
+  <div class="scroll-hint">
+    <span class="scroll-start-text">SCROLL TO EXPLORE</span>
+    <div class="scroll-icon-circle">
+      <svg class="scroll-icon" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+    </div>
+  </div>
+
+
+  <!-- Text Appearence on Scroll -->
+  <div class="scroll-text left-middle black" data-start="5700" data-end="6600">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div class="scroll-text left-middle black" data-start="8700" data-end="9700">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div class="scroll-text bottom-center black" data-start="12500" data-end="13500">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div class="scroll-text left-middle black" data-start="15800" data-end="16800">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div class="scroll-text bottom-center black" data-start="18700" data-end="19700">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div class="scroll-text left-middle white" data-start="20400" data-end="21200">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div class="scroll-text left-middle white" data-start="23200" data-end="35000">
+    <div class="btn-group">
+      <a href="#">
+        <div class="btn-icon-circle">
+          <svg class="scroll-icon" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </div>
+        <span>Work</span>
+      </a>
+      <a href="#">
+        <div class="btn-icon-circle">
+          <svg class="scroll-icon" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </div>
+        <span>Contact</span>
+      </a>
+    </div>
+  </div>
+
 
   <!-- Lottie Containers -->
   <div class="lottie-wrapper">
     <div id="lottie-container-1"></div>
     <div id="lottie-container-2" class="hidden"></div>
     <div id="lottie-container-3" class="hidden"></div>
+    <div id="lottie-container-4" class="hidden"></div>
   </div>
 
-  <!-- Link your JS (always at the end of body) -->
+  <!-- Link your JS (always at the end of body) --> 
   <script src="js/main.js"></script>
 
 </body>
-
 </html>
