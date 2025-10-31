@@ -1,15 +1,16 @@
 <style>
-  * {
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Pattaya&display=swap');
+  * { 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
   body {
-    font-family: 'Arial', sans-serif;
+    font-family: "Noto Serif", serif;
     background: #000;
     color: #fff;
-    height: 3500vh;
+    height: 4000vh;
     overflow-x: hidden;
   }
 
@@ -20,7 +21,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #000;
+    background: #f5f5f5;
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -29,10 +30,10 @@
   }
 
   .loader-circle {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    background: #fff;
+    background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,16 +43,43 @@
     position: relative;
   }
 
-  .loader-text {
-    position: absolute;
-    color: #000;
-    font-size: 22px;
-    opacity: 0;
+  svg {
+    width: 75px; 
+    height: 75px; 
+  }
+
+  .triangle-path { 
+    stroke: #fff; 
+    stroke-width: 2; 
+    fill: #545454; 
+    stroke-linejoin: round; 
+    stroke-linecap: round; 
+    stroke-dasharray: 240; 
+    stroke-dashoffset: 240; 
+    animation: draw 2s linear infinite; 
+  }
+
+  @keyframes draw { 
+    0% { stroke-dashoffset: 240; } 
+    100% { stroke-dashoffset: 0; } 
   }
 
   .loader-percentage {
-    color: #fff;
-    font-size: 24px;
+    color: #545454;
+    font-size: 1.2rem;
+  }
+
+  /* Black Overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 999;
+    opacity: 1; /* visible from the start */
+    transition: opacity 1s ease;
   }
 
   /* Lottie Containers */
@@ -68,7 +96,8 @@
 
   #lottie-container-1,
   #lottie-container-2,
-  #lottie-container-3 {
+  #lottie-container-3,
+  #lottie-container-4 {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -76,9 +105,7 @@
     left: 0;
   }
 
-  #lottie-container-1 canvas,
-  #lottie-container-2 canvas,
-  #lottie-container-3 canvas {
+  canvas {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
@@ -89,4 +116,124 @@
     opacity: 0;
     pointer-events: none;
   }
+
+  /*Sroll Text*/
+  .scroll-text {
+    position: fixed;
+    opacity: 0; /* initially hidden */
+    pointer-events: none;
+    z-index: 99;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.5;
+    transform: translate(-50%, -50%);
+
+    /* Word break */
+    word-break: break-word; /* break long words */
+    overflow-wrap: break-word;
+    white-space: normal; /* allow wrapping */
+  }
+
+  /* Position classes */
+  .scroll-text.bottom-center { bottom: 75px; left: 50%; text-align: center; max-width: 900px; transform: translateX(-50%); }
+  .scroll-text.left-middle { top: 50%; left: 200px; text-align: left; max-width: 350px; transform: translateY(-50%); }
+
+  /* Color classes */
+  .scroll-text.white { color: #fff; }
+  .scroll-text.black { color: #000; }
+
+  .btn-group{
+    display: flex;
+    gap: 40px;
+  }
+  .btn-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eaeceb;
+  }
+  .btn-group a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #fff;
+  }
+
+  /* Hide default scrollbar */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  /* Custom Scrollbar */
+  .scrollbar-track {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 100vh;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 99;
+    pointer-events: auto;
+    background: transparent;
+  }
+  .scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: rgba(185, 218, 189, 0.9);
+    border-radius: 10px;
+    transition: background 0.15s ease; /* no position delay */
+  }
+
+  /*Scroll Hint*/
+  .scroll-hint {
+    position: fixed;
+    bottom: 75px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    display: flex;
+    flex-direction: column; /* text on top, icon below */
+    align-items: center;
+    gap: 20px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    font-size: 14px;
+    z-index: 99;
+    pointer-events: none; /* don’t block interaction */
+  }
+
+  .scroll-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 1s infinite;
+    background-color: #8E9093;
+  }
+
+  .scroll-icon {
+    width: 32px;
+    height: 32px;
+    stroke: #000;
+    stroke-width: 1;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
 </style>
